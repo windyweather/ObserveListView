@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class ObservLVApplication extends Application {
+public class ObserveLVApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(ObservLVApplication.class.getResource("OLV-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(ObserveLVApplication.class.getResource("OLV-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 750, 400);
         stage.setTitle("Observe List View");
         stage.setScene(scene);

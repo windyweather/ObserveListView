@@ -1,5 +1,7 @@
 package net.windyweather.observelistview;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,8 +10,14 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ObservLVController {
-    public ListView lvPairsList;
+// local classes
+import net.windyweather.observelistview.ObservePairClass;
+
+public class ObserveLVController {
+
+    ObservableList<ObservePairClass> listPairs = FXCollections.observableArrayList();
+
+    public ListView<ObservePairClass> lvPairsList;
     public TextField txtPairName;
     public TextField txtSource;
     public TextField txtDestination;
@@ -24,7 +32,7 @@ public class ObservLVController {
     @FXML
     private Label welcomeText;
 
-
+    private static int intNextPair = 0;
     //
     // Do this in one place so we can easily turn it off later
     //
@@ -41,7 +49,30 @@ public class ObservLVController {
         stage.close();
     }
 
+    // Make a next pair name in a simple way
+    private void FillPair( ObservePairClass pair ) {
+        pair.sPairName = String.format("pair_%d", intNextPair);
+        pair.sSource = String.format("pair_Source_%d", intNextPair);
+        pair.sDestination = String.format("pair_Destination_%d", intNextPair);
+        intNextPair++;
+    }
+
+    private void FillGuiFromPair( ObservePairClass pair ) {
+        txtPairName.setText(pair.sPairName);
+        txtSource.setText( pair.sSource);
+        txtDestination.setText( pair.sDestination);
+    }
+    public void  MakeAPair() {
+        ObservePairClass pair = new ObservePairClass();
+        FillPair( pair );
+        listPairs.add( pair );
+        FillGuiFromPair(pair);
+        // Does this display the list of pairs?
+        lvPairsList.setItems( listPairs );
+
+    }
     public void OnNewPairClick(ActionEvent actionEvent) {
+        MakeAPair();
     }
 
     public void OnBtnNew10Pairs(ActionEvent actionEvent) {
