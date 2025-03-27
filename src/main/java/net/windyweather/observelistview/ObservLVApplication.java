@@ -11,7 +11,7 @@ public class ObservLVApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ObservLVApplication.class.getResource("OLV-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        Scene scene = new Scene(fxmlLoader.load(), 750, 400);
         stage.setTitle("Observe List View");
         stage.setScene(scene);
         stage.show();

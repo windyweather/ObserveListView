@@ -1,16 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="net.windyweather.observelistview.HelloController">
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" prefHeight="396.0" prefWidth="776.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.windyweather.observelistview.ObservLVController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+          <Label fx:id="welcomeText" text="Observable List View" textAlignment="CENTER">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+   <ListView fx:id="lvPairsList" prefHeight="200.0" prefWidth="200.0" />
+   <HBox prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <Label text="Pair Name" />
+         <TextField fx:id="txtPairName">
+            <HBox.margin>
+               <Insets left="10.0" />
+            </HBox.margin>
+         </TextField>
+         <Label layoutX="10.0" layoutY="10.0" text="Source">
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+            <padding>
+               <Insets left="20.0" />
+            </padding>
+         </Label>
+         <TextField fx:id="txtSource" layoutX="65.0" layoutY="10.0">
+            <HBox.margin>
+               <Insets left="10.0" />
+            </HBox.margin>
+         </TextField>
+         <Label layoutX="215.0" layoutY="10.0" text="Destination">
+            <padding>
+               <Insets left="20.0" />
+            </padding>
+            <HBox.margin>
+               <Insets />
+            </HBox.margin>
+         </Label>
+         <TextField fx:id="txtDestination" layoutX="252.0" layoutY="10.0">
+            <HBox.margin>
+               <Insets left="10.0" />
+            </HBox.margin>
+         </TextField>
+      </children>
+   </HBox>
+   <HBox prefHeight="100.0" prefWidth="200.0">
+      <children>
+         <Button fx:id="btnNewPair" mnemonicParsing="false" onAction="#OnNewPairClick" text="New Pair" />
+         <Button fx:id="btnNew10Pairs" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#OnBtnNew10Pairs" text="New 10 Pairs">
+            <HBox.margin>
+               <Insets left="20.0" />
+            </HBox.margin>
+         </Button>
+         <Button fx:id="btnDeletePair" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#OnDeletePair" text="Delete Pair">
+            <HBox.margin>
+               <Insets left="20.0" />
+            </HBox.margin>
+         </Button>
+         <Button fx:id="btnDeleteAll" layoutX="93.0" layoutY="10.0" mnemonicParsing="false" onAction="#OnDeleteAll" text="Delete All">
+            <HBox.margin>
+               <Insets left="20.0" />
+            </HBox.margin>
+         </Button>
+         <Button fx:id="btnMoveTop" layoutX="187.0" layoutY="10.0" mnemonicParsing="false" onAction="#OnMoveTop" text="Move Top">
+            <HBox.margin>
+               <Insets left="40.0" />
+            </HBox.margin>
+         </Button>
+         <Button fx:id="btnMoveUp" layoutX="260.0" layoutY="10.0" mnemonicParsing="false" onAction="#OnMoveUp" text="Move Up">
+            <HBox.margin>
+               <Insets left="20.0" />
+            </HBox.margin>
+         </Button>
+         <Button fx:id="btnMoveDown" layoutX="394.0" layoutY="10.0" mnemonicParsing="false" onAction="#OnMoveDown" text="Move Down">
+            <HBox.margin>
+               <Insets left="20.0" />
+            </HBox.margin>
+         </Button>
+      </children>
+   </HBox>
+    <Button fx:id="btnClose" onAction="#onCloseButtonClick" text="Close" />
 </VBox>
