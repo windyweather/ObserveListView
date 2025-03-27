@@ -19,7 +19,7 @@
          <Font size="18.0" />
       </font>
    </Label>
-   <ListView fx:id="lvPairsList" prefHeight="200.0" prefWidth="200.0" />
+   <ListView fx:id="lvPairsList" onMouseClicked="#OnLVMouseClicked" prefHeight="200.0" prefWidth="200.0" />
    <HBox prefHeight="100.0" prefWidth="200.0">
       <children>
          <Label text="Pair Name" />

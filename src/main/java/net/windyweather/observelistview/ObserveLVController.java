@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 // local classes
@@ -86,6 +87,7 @@ public class ObserveLVController {
     public void OnDeletePair(ActionEvent actionEvent) {
         int idx = lvPairsList.getSelectionModel().getSelectedIndex();
         listPairs.remove( idx );
+        ClearGuiItems();
     }
 
     public void OnDeleteAll(ActionEvent actionEvent) {
@@ -94,6 +96,7 @@ public class ObserveLVController {
         while (!listPairs.isEmpty()){
             listPairs.removeFirst();
         }
+        ClearGuiItems();
     }
 
     /*
@@ -146,5 +149,37 @@ public class ObserveLVController {
         listPairs.remove(idx);
         listPairs.add( idx+1, pair);
         SelectAndFocusIndex( idx+1);
+    }
+
+    /*
+        Clear out the GUI items
+     */
+    private void ClearGuiItems() {
+        /*
+            now populate the GUI items - just clear them out
+         */
+        txtPairName.setText( "" );
+        txtSource.setText( "");
+        txtDestination.setText( "");
+    }
+    /*
+        Maybe the selection changed in the list so display the pair item in the fields
+     */
+    public void OnLVMouseClicked(MouseEvent mouseEvent) {
+        int idx = lvPairsList.getSelectionModel().getSelectedIndex();
+
+        printSysOut(String.format("OnLVMouseClicked - click with Idx %d", idx) );
+        if ( idx == -1 ) {
+            printSysOut("OnLVMouseClicked - No selected item");
+            ClearGuiItems();
+            return;
+        }
+        ObservePairClass pair = listPairs.get(idx);
+
+        /*
+            now populate the GUI items
+         */
+        FillGuiFromPair(pair);
+
     }
 }
