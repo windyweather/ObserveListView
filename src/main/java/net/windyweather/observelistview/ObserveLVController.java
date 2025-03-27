@@ -96,12 +96,55 @@ public class ObserveLVController {
         }
     }
 
+    /*
+        Make sure item of interest is selected and visible
+     */
+    private void SelectAndFocusIndex( int idx ) {
+        lvPairsList.getSelectionModel().select(idx);
+        if (!lvPairsList.isVisible() ){
+            lvPairsList.getFocusModel().focus(idx);
+            lvPairsList.scrollTo( idx);
+        }
+        lvPairsList.scrollTo( idx);
+
+    }
     public void OnMoveTop(ActionEvent actionEvent) {
+
+        int idx = lvPairsList.getSelectionModel().getSelectedIndex();
+        printSysOut(String.format("OnMoveTop - moving idx %d to top", idx ) );
+        ObservePairClass pair = listPairs.get(idx);
+        listPairs.remove(idx);
+        listPairs.addFirst(pair );
+        SelectAndFocusIndex( 0);
     }
 
     public void OnMoveUp(ActionEvent actionEvent) {
+        int idx = lvPairsList.getSelectionModel().getSelectedIndex();
+        if ( idx == 0 ) {
+            // already at top so we are done
+            printSysOut(String.format("OnMoveUp - idx %d already at top", idx ) );
+            SelectAndFocusIndex( idx );
+            return;
+        }
+        printSysOut(String.format("OnMoveUp - moving idx %d Up one item", idx ) );
+        ObservePairClass pair = listPairs.get(idx);
+        listPairs.remove(idx);
+        listPairs.add( idx-1, pair);
+        SelectAndFocusIndex( idx-1);
     }
 
     public void OnMoveDown(ActionEvent actionEvent) {
+        int idx = lvPairsList.getSelectionModel().getSelectedIndex();
+        if ( (idx+1) == listPairs.size() ) {
+            // already at bottom so we are done
+            printSysOut(String.format("OnMoveDown - idx %d already at bottom", idx ) );
+            SelectAndFocusIndex(idx);
+            return;
+        }
+        printSysOut(String.format("OnMoveDown - moving idx %d Down one item", idx ) );
+        ObservePairClass pair = listPairs.get(idx);
+        listPairs.remove(idx);
+        listPairs.add( idx+1, pair);
+        SelectAndFocusIndex( idx+1);
     }
 }
