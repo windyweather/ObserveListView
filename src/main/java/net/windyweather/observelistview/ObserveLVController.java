@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 // local classes
 import net.windyweather.observelistview.ObservePairClass;
 
+import java.util.Collection;
+
 public class ObserveLVController {
 
     ObservableList<ObservePairClass> listPairs = FXCollections.observableArrayList();
@@ -76,12 +78,22 @@ public class ObserveLVController {
     }
 
     public void OnBtnNew10Pairs(ActionEvent actionEvent) {
+        for (int i=0; i<10; i++){
+            MakeAPair();
+        }
     }
 
     public void OnDeletePair(ActionEvent actionEvent) {
+        int idx = lvPairsList.getSelectionModel().getSelectedIndex();
+        listPairs.remove( idx );
     }
 
     public void OnDeleteAll(ActionEvent actionEvent) {
+        // no clue why this doesn't work
+        //listPairs.removeAll();
+        while (!listPairs.isEmpty()){
+            listPairs.removeFirst();
+        }
     }
 
     public void OnMoveTop(ActionEvent actionEvent) {
